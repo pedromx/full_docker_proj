@@ -1,0 +1,6 @@
+[submodule "react_app"]
+	path = react_app
+	url = https://dev.azure.com/pedromx94/docker_proj/_git/react_app
+[submodule "net_core_app"]
+	path = net_core_app
+	url = https://dev.azure.com/pedromx94/net_core_app/_git/net_core_app
