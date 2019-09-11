@@ -25,6 +25,6 @@ services:
       - '8080:80'        
 networks:
   backend:    
-    driver: "nat"
+    driver: "bridge"
     #driver:nat for local
     #driver:bridge for azure
