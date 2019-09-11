@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+ 
+  react_app:
+    container_name: react_app
+    build:
+      context: ./react_app
+      dockerfile: Dockerfile
+    networks:
+       - backend    
+    ports:
+      - '3001:3000'
+    links:
+      - net_core_app   
+ 
+  net_core_app:
+    container_name: net_core_app
+    build:     
+      context: ./net_core_app
+      dockerfile: Dockerfile
+    networks:
+       - backend       
+    ports:
+      - '8080:80'        
+networks:
+  backend:    
+    driver: "nat"
+    #driver:nat for local
+    #driver:bridge for azure
