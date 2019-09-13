@@ -7,6 +7,8 @@ services:
     build:
       context: ./react_app
       dockerfile: Dockerfile
+    image: pedromx94/react_app_img:latest
+    #image is for web
     networks:
        - backend    
     ports:
@@ -19,6 +21,8 @@ services:
     build:     
       context: ./net_core_app
       dockerfile: Dockerfile
+    image: pedromx94/net_core_app_img:latest
+    #image is for web
     networks:
        - backend       
     ports:

@@ -1,0 +1,39 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '/react_app'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '''**/net_core_app/net_core_project.csproj'''
+    feedsToUse: 'select'
+    
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/net_core_app/net_core_project.csproj'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'pedromx94DH'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Push services'
+    includeSourceTags: true
+    includeLatestTag: true
