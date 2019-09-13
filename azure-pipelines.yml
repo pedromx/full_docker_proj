@@ -6,8 +6,7 @@ pool:
 
 steps:
 - checkout: self
-  submodules: true
-  path: 'net_core_app'
+  submodules: true  
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
