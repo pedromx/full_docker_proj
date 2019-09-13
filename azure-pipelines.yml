@@ -16,17 +16,6 @@ steps:
   displayName: 'Run a multi-line script'
 
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '''**/net_core_app/net_core_project.csproj'''
-    feedsToUse: 'select'
-    
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/net_core_app/net_core_project.csproj'
-
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
