@@ -2,12 +2,11 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
 
 steps:
 - checkout: self
-  submodules: true
-  path: 'net_core_app'
+  submodules: true  
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
@@ -16,22 +15,14 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: Npm@1
+- task: DockerCompose@0
   inputs:
-    command: 'install'
-    workingDir: '/react_app'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '''**/net_core_app/net_core_project.csproj'''
-    feedsToUse: 'select'
-    
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/net_core_app/net_core_project.csproj'
-
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'pedromx94DH'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Build services'
+    includeSourceTags: true
+    includeLatestTag: true
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
