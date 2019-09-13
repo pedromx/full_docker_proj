@@ -7,13 +7,6 @@ pool:
 steps:
 - checkout: self
   submodules: true  
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
 - task: DockerCompose@0
   inputs:
@@ -23,6 +16,7 @@ steps:
     action: 'Build services'
     includeSourceTags: true
     includeLatestTag: true
+    
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
