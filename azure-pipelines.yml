@@ -8,6 +8,11 @@ steps:
 - checkout: self
   submodules: true  
 
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '4.3.0'
+    checkLatest: true
+
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Container Registry'
